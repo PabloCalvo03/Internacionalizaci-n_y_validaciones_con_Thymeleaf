@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<link rel="stylesheet" type="text/css" href="CSS/estilos.css">
+	<title>Agregar Libro</title>
+</head>
+
+<body>
+	<h2>Agregar Libro</h2>
+
+	<form th:action="@{/nuevo_libro}" th:object="${libro}" method="post">
+		<div>
+			<label for="autor">Autor:</label>
+			<input type="text" th:field="*{autor}" id="autor">
+			<div th:if="${#fields.hasErrors('autor')}" th:errors="*{autor}" class="alert alert-danger"></div>
+		</div>
+		<div>
+			<label for="nombre">Nombre:</label>
+			<input type="text" th:field="*{nombre}" id="nombre">
+			<div th:if="${#fields.hasErrors('nombre')}" th:errors="*{nombre}" class="alert alert-danger"></div>
+		</div>
+		<div>
+			<label for="categoria">Categoria:</label>
+			<select name="categoria" id="categoria" required>
+				<option value="">Selecciona una categoria</option>
+				<option th:each="c : ${categorias}" th:value="${c}" th:text="${c}"></option>
+			</select>
+		</div>
+		<div>
+			<label for="precio">Precio:</label>
+			<input type="number" th:field="*{precio}" id="precio">
+			<div th:if="${#fields.hasErrors('precio')}" th:errors="*{precio}" class="alert alert-danger"></div>
+		</div>
+		<div>
+			<label for="anyoPublicacion">Año de publicacion:</label>
+			<input type="number" th:field="*{anyoPublicacion}" id="anyoPublicacion">
+			<div th:if="${#fields.hasErrors('anyoPublicacion')}" th:errors="*{anyoPublicacion}" class="alert alert-danger"></div>
+		</div>
+		<div>
+			<label for="isbn">ISBN:</label>
+			<input type="text" th:field="*{isbn}" id="isbn">
+			<div th:if="${#fields.hasErrors('isbn')}" th:errors="*{isbn}" class="alert alert-danger"></div>
+		</div>
+		<div>
+			<button type="submit">Agregar</button>
+		</div>
+	</form>
+</body>
+
+</html>
